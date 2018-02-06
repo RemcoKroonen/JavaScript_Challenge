@@ -119,6 +119,9 @@ var parties = [
 	{name: "Libertarische Partij", secular: true, size: 0}
 ];
 
-function start() {
+console.log(subjects[0].title);
 
-}
+
+function start() {
+	document.getElementById("title")
+};
