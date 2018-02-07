@@ -25,23 +25,35 @@ function paginawissel() {
 		document.getElementById('next').style.visibility = 'hidden';
 		document.getElementById('back').style.visibility = 'hidden';
 		document.getElementById('start').style.visibility = 'visible';
+		document.getElementById("onderwerp").style.visibility = 'hidden';
+		document.getElementById("vraag").style.visibility = 'hidden';
+		document.getElementById('eens').style.visibility = 'hidden';
+		document.getElementById('geenvanbeide').style.visibility = 'hidden';
+		document.getElementById('oneens').style.visibility = 'hidden';
 	};
 	if( (nr>0) && (nr<= subjects.length)) {
 		document.getElementById('next').style.visibility = 'visible';
 		document.getElementById('back').style.visibility = 'visible';
 		document.getElementById('start').style.visibility = 'hidden';
-		//document.getElementById("pagenumber").innerHTML = (subjects[0>].title);
-		alert(subjects[nr-1].title);
+		document.getElementById("onderwerp").style.visibility = 'visible';
+		document.getElementById("vraag").style.visibility = 'visible';
+		document.getElementById('eens').style.visibility = 'visible';
+		document.getElementById('geenvanbeide').style.visibility = 'visible';
+		document.getElementById('oneens').style.visibility = 'visible';
 	};
 	if (nr>subjects.length) {
 		document.getElementById('next').style.visibility = 'hidden';
 		document.getElementById('back').style.visibility = 'visible';
 		document.getElementById('start').style.visibility = 'hidden';
+		document.getElementById("onderwerp").style.visibility = 'hidden';
+		document.getElementById("vraag").style.visibility = 'hidden';
+		document.getElementById('eens').style.visibility = 'hidden';
+		document.getElementById('geenvanbeide').style.visibility = 'hidden';
+		document.getElementById('oneens').style.visibility = 'hidden';
 	};
 
-	document.getElementById("pagenumber").innerHTML = [nr];
-	//document.getElementById("pagenumber").innerHTML = (subjects[0].title);;
-	//alert(subjects.length);
+	document.getElementById("onderwerp").innerHTML = (subjects[nr-1].title);
+	document.getElementById("vraag").innerHTML = (subjects[nr-1].statement);
 
 };
 function opstartgedrukt() {
