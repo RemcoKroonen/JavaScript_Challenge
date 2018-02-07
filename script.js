@@ -40,6 +40,7 @@ function paginawissel() {
 	};
 
 	document.getElementById("pagenumber").innerHTML = [nr];
+	//document.getElementById("pagenumber").innerHTML = (subjects[0].title);;
 	//alert(subjects.length);
 
 };
