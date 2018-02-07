@@ -30,6 +30,7 @@ function paginawissel() {
 		document.getElementById('next').style.visibility = 'visible';
 		document.getElementById('back').style.visibility = 'visible';
 		document.getElementById('start').style.visibility = 'hidden';
+		//document.getElementById("pagenumber").innerHTML = (subjects[0>].title);
 		alert(subjects[nr-1].title);
 	};
 	if (nr>subjects.length) {
@@ -37,8 +38,10 @@ function paginawissel() {
 		document.getElementById('back').style.visibility = 'visible';
 		document.getElementById('start').style.visibility = 'hidden';
 	};
-	//document.getElementById("paginanummer").innerHTML = "";
+
+	document.getElementById("pagenumber").innerHTML = [nr];
 	//alert(subjects.length);
+
 };
 function opstartgedrukt() {
 
@@ -55,6 +58,10 @@ function opvolgondegedrukt() {
 	nr++;
 	paginawissel();
 }
+//function paginanummer(title) {
+    //return title;
+
+//}
 
 // 
 // var text = document.getElementById("title")
