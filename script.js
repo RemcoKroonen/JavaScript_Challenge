@@ -12,6 +12,9 @@ var back = getElementById("back");
 var opinion = getElementById("opinion");
 var result = getElementById("result");*/
 
+//var save = [eens, geenvanbeide, oneens];
+
+var antwoord = [];
 
 
 
@@ -50,6 +53,8 @@ function paginawissel() {
 		document.getElementById('eens').style.visibility = 'hidden';
 		document.getElementById('geenvanbeide').style.visibility = 'hidden';
 		document.getElementById('oneens').style.visibility = 'hidden';
+
+		score();
 	};
 
 	document.getElementById("onderwerp").innerHTML = (subjects[nr-1].title);
@@ -60,17 +65,50 @@ function opstartgedrukt() {
 
 	nr++;
 	paginawissel();
-}
+};
 
 function opvorigegedrukt() {
 
 	nr--;
 	paginawissel();
-}
+};
 function opvolgondegedrukt() {
 	nr++;
 	paginawissel();
-}
+};
+
+function eens(){
+	antwoord[nr-1]= 1;
+	nr++;
+	paginawissel();
+	
+};
+
+function oneens(){
+	antwoord[nr-1]= 3;
+	nr++;
+	paginawissel();
+	
+};
+
+function geenvanbeide(){
+	antwoord[nr-1]= 2;
+	nr++;
+	paginawissel();
+	
+};
+
+function score(){
+	alert("ik zit nu in score")
+	for (var i = 0; i <= antwoord.length-1; i++) {
+		//antwoord[i]
+		//alert(antwoord[i]);
+		for (var x = 0 ; x <= subjects[i].parties.length; x++) {
+			alert(subjects[i].parties[x].name)
+		}
+	};
+
+};
 //function paginanummer(title) {
     //return title;
 
