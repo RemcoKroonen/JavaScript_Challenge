@@ -120,3 +120,6 @@ var parties = [
 ];
 
 
+//50plus
+//vrijzinnige partij
+//missen

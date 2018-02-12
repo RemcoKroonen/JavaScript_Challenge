@@ -21,6 +21,9 @@ var antwoord = [];
 
 var text = document.getElementById("subjects");
 
+var points = [];
+
+
 console.log(subjects[nr]);
 
 function paginawissel() {
@@ -99,16 +102,55 @@ function geenvanbeide(){
 };
 
 function score(){
-	alert("ik zit nu in score")
-	for (var i = 0; i <= antwoord.length-1; i++) {
-		//antwoord[i]
-		//alert(antwoord[i]);
-		for (var x = 0 ; x <= subjects[i].parties.length; x++) {
-			alert(subjects[i].parties[x].name)
-		}
-	};
+	subjects[0].parties.forEach(partie => {
+		points.push({name: partie.name, points: 0});
+	});
+
+	antwoord.forEach(vergelijkantwoord);
+	debugger;
+	points.sort(function(a,b){
+		return b.points - a.points;
+		});
+
+	debugger;
+
+	//alert("ik zit nu in score")
+	// for (var i = 0; i <= antwoord.length-1; i++) {
+	// 	//antwoord[i]
+	// 	//alert(antwoord[i]);
+	// 	for (var x = 0 ; x <= subjects[i].parties.length-1; x++) {
+	// 		alert("antwoord op vraag:" + i + " is:" + antwoord[i] + ". standpunt partij:" + subjects[i].parties[x].name + " is:" + subjects[i].parties[x].position);
+
+	// 	};
+	// };
 
 };
+function vergelijkantwoord(gegevenantwoord,vraagnummer){
+	
+	for(partijteller = 0; partijteller < subjects[vraagnummer].parties.length; partijteller++){
+		if( (subjects[vraagnummer].parties[partijteller].position == "pro" && gegevenantwoord == 1) || (subjects[vraagnummer].parties[partijteller].position == "ambivalent" && gegevenantwoord == 2) || (subjects[vraagnummer].parties[partijteller].position == "contra" && gegevenantwoord == 3)){
+			//alert(gegevenantwoord + " " + subjects[vraagnummer].parties[partijteller].name + " " + subjects[vraagnummer].parties[partijteller].position);
+			for(pointsteller = 0; pointsteller < points.length; pointsteller++){
+				if(points[pointsteller].name == subjects[vraagnummer].parties[partijteller].name){
+					points[pointsteller].points++;
+				}
+			}
+		}
+		
+	};
+	
+//	alert(gegevenantwoord + " " + vraagnummer);
+//	debugger;
+//	subjects[vraagnummer].parties.forEach((partie, gegevenantwo) => {alert(partie.name + " " + partie.position + " " + gegevenantwoord + " " + vraagnummer)});
+//	subjects[vraagnummer].parties.forEach((gegevenantwoord,parties.name)=>{ alert(parties.name)});
+//		if( ((gegevenantwoord == 1) and (party.position == "pro")) || ((gegevenantwoord == 2) and (party.position == "ambivalent")) || ((gegevenantwoord == 3) and (party.position == "contra")) ) {
+//			s
+//		}
+//		});
+
+};
+
+
 //function paginanummer(title) {
     //return title;
 
