@@ -3,15 +3,19 @@
 <head>
 	<title>JavaScrip Challenge</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<meta charset="utf-8">
 </head>
 <body onload="javascript:paginawissel()";>
 	<h1 id="subjects">StemWijzer Tweede Kamer 2017</h1>
-
+	<p id="tekststellingen">Test uw politieke voorkeur aan de hand van 30 stellingen</p>
+	
 
 	<p id="onderwerp"> </p>
 	<p id="vraag"> </p>
 
+	<div id="main"></div>
+	
 
 	<button id="start" onclick="javascrip:opstartgedrukt()">Start</button>
 	<button id="back" onclick="javascript:opvorigegedrukt()">Vorige</button>
@@ -21,6 +25,8 @@
 	<button id="eens" value="eens" onclick="javascrip:eens()">Eens</button>
 	<button id="geenvanbeide"  value="geenvanbeide" onclick="javascript:geenvanbeide()">Geen van beide</button>
 	<button id="oneens" value="oneens" onclick="javascript:oneens()">Oneens</button>
+
+
 
 </body>
 <script src="http://stemwijzer.dvc-icta.nl/data.js"></script>

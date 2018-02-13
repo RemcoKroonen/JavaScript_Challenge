@@ -36,6 +36,8 @@ function paginawissel() {
 		document.getElementById('eens').style.visibility = 'hidden';
 		document.getElementById('geenvanbeide').style.visibility = 'hidden';
 		document.getElementById('oneens').style.visibility = 'hidden';
+		document.getElementById('tekststellingen').style.visibility = 'visible';
+
 	};
 	if( (nr>0) && (nr<= subjects.length)) {
 		document.getElementById('next').style.visibility = 'visible';
@@ -46,6 +48,8 @@ function paginawissel() {
 		document.getElementById('eens').style.visibility = 'visible';
 		document.getElementById('geenvanbeide').style.visibility = 'visible';
 		document.getElementById('oneens').style.visibility = 'visible';
+		document.getElementById('tekststellingen').style.visibility = 'hidden';
+		
 	};
 	if (nr>subjects.length) {
 		document.getElementById('next').style.visibility = 'hidden';
@@ -56,8 +60,16 @@ function paginawissel() {
 		document.getElementById('eens').style.visibility = 'hidden';
 		document.getElementById('geenvanbeide').style.visibility = 'hidden';
 		document.getElementById('oneens').style.visibility = 'hidden';
+		document.getElementById('tekststellingen').style.visibility = 'hidden';
 
 		score();
+		points.forEach(item =>{
+			var tekstresultaat = document.createElement("p")
+			var innertekst = document.createTextNode(item.name)
+			tekstresultaat.appendChild(innertekst)
+			document.getElementById("main").appendChild(tekstresultaat);
+
+		})
 	};
 
 	document.getElementById("onderwerp").innerHTML = (subjects[nr-1].title);
@@ -138,6 +150,7 @@ function vergelijkantwoord(gegevenantwoord,vraagnummer){
 		}
 		
 	};
+
 	
 //	alert(gegevenantwoord + " " + vraagnummer);
 //	debugger;
