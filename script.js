@@ -21,7 +21,6 @@ function paginawissel() {
 		subjects.forEach(onderwerp => {
 			gewicht.push(1);
 		});
-		debugger;
 		document.getElementById('next').style.visibility = 'hidden';
 		document.getElementById('back').style.visibility = 'hidden';
 		document.getElementById('start').style.visibility = 'visible';
@@ -78,9 +77,10 @@ function paginawissel() {
 
 
 		score();
+		//alert(gewicht.reduce(getSum));
 		points.forEach(item =>{
 			var tekstresultaat = document.createElement("p")
-			var innertekst = document.createTextNode(item.name)
+			var innertekst = document.createTextNode(item.name + " " + Math.floor(( item.points  /  (gewicht.reduce(getSum))* 100)) + "%");
 			tekstresultaat.appendChild(innertekst)
 			document.getElementById("main").appendChild(tekstresultaat);
 
@@ -237,6 +237,13 @@ function seculier(){
 			}
 		}
 	})
+
+};
+
+function getSum(total, num) {
+
+	return total + num;
+
 
 };
 
