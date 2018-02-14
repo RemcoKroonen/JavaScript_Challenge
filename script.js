@@ -1,20 +1,9 @@
 console.log(subjects[0].title);
 
 var nr = 0;
-/*var title = getElementById("subjects");
-var name = getElementById("name");
-var pro = getElementById("pro");
-var contra = getElementById("contra");
-var ambivalent = getElementById("ambivalent");
-var text = getElementById("text");
-var skip = getElementById("skip");
-var back = getElementById("back");
-var opinion = getElementById("opinion");
-var result = getElementById("result");*/
-
-//var save = [eens, geenvanbeide, oneens];
-
 var antwoord = [];
+
+var gewicht = [];
 
 
 
@@ -28,6 +17,11 @@ console.log(subjects[nr]);
 
 function paginawissel() {
 	if (nr == 0) {
+		gewicht = [];
+		subjects.forEach(onderwerp => {
+			gewicht.push(1);
+		});
+		debugger;
 		document.getElementById('next').style.visibility = 'hidden';
 		document.getElementById('back').style.visibility = 'hidden';
 		document.getElementById('start').style.visibility = 'visible';
@@ -40,6 +34,9 @@ function paginawissel() {
 		document.getElementById('main').style.visibility = 'hidden';
 		document.getElementById('groter').style.visibility = 'hidden';
 		document.getElementById('seculier').style.visibility = 'hidden';
+		document.getElementById('allepartijen').style.visibility = 'hidden';
+		document.getElementById('belangrijktonen').style.visibility = 'hidden';
+
 
 	};
 	if( (nr>0) && (nr<= subjects.length)) {
@@ -55,7 +52,12 @@ function paginawissel() {
 		document.getElementById('tekststellingen').style.visibility = 'hidden';
 		document.getElementById('groter').style.visibility = 'hidden';
 		document.getElementById('seculier').style.visibility = 'hidden';
+		document.getElementById('allepartijen').style.visibility = 'hidden';
 		document.getElementById('main').innerHTML = '';
+		document.getElementById('belangrijktonen').style.visibility = 'visible';
+
+
+
 		
 	};
 	if (nr>subjects.length) {
@@ -71,6 +73,9 @@ function paginawissel() {
 		document.getElementById('main').style.visibility = 'visible';
 		document.getElementById('groter').style.visibility = 'visible';
 		document.getElementById('seculier').style.visibility = 'visible';
+		document.getElementById('allepartijen').style.visibility = 'visible';
+		document.getElementById('belangrijktonen').style.visibility = 'hidden';
+
 
 		score();
 		points.forEach(item =>{
@@ -93,33 +98,82 @@ function opstartgedrukt() {
 };
 
 function opvorigegedrukt() {
-
+	if (document.getElementById("belangrijk").checked == true) {
+		gewicht[nr-1] = 2;
+	} else{
+		gewicht[nr-1] = 1;
+	}
 	nr--;
 	paginawissel();
+	if (gewicht[nr-1] == 2) {
+		document.getElementById("belangrijk").checked = true;
+	}else{
+		document.getElementById("belangrijk").checked = false;
+	}
 };
 function opvolgondegedrukt() {
+	if (document.getElementById("belangrijk").checked == true) {
+		gewicht[nr-1] = 2;
+	} else{
+		gewicht[nr-1] = 1;
+	}
 	nr++;
 	paginawissel();
+	if (gewicht[nr-1] == 2) {
+		document.getElementById("belangrijk").checked = true;
+	}else{
+		document.getElementById("belangrijk").checked = false;
+	}
 };
 
 function eens(){
+	if (document.getElementById("belangrijk").checked == true) {
+		gewicht[nr-1] = 2;
+	} else{
+		gewicht[nr-1] = 1;
+	}
 	antwoord[nr-1]= 1;
 	nr++;
 	paginawissel();
+	if (gewicht[nr-1] == 2) {
+		document.getElementById("belangrijk").checked = true;
+	}else{
+		document.getElementById("belangrijk").checked = false;
+	}
 	
 };
 
 function oneens(){
+	if (document.getElementById("belangrijk").checked == true) {
+		gewicht[nr-1] = 2;
+	} else{
+		gewicht[nr-1] = 1;
+	}
 	antwoord[nr-1]= 3;
 	nr++;
 	paginawissel();
+	if (gewicht[nr-1] == 2) {
+		document.getElementById("belangrijk").checked = true;
+	}else{
+		document.getElementById("belangrijk").checked = false;
+	}
 	
 };
 
 function geenvanbeide(){
+	if (document.getElementById("belangrijk").checked == true) {
+		gewicht[nr-1] = 2;
+	} else{
+		gewicht[nr-1] = 1;
+	}
 	antwoord[nr-1]= 2;
 	nr++;
 	paginawissel();
+	if (gewicht[nr-1] == 2) {
+		document.getElementById("belangrijk").checked = true;
+	}else{
+		document.getElementById("belangrijk").checked = false;
+	}
 	
 };
 
@@ -130,22 +184,9 @@ function score(){
 	});
 
 	antwoord.forEach(vergelijkantwoord);
-	//debugger;
 	points.sort(function(a,b){
 		return b.points - a.points;
 	});
-
-	//debugger;
-
-	//alert("ik zit nu in score")
-	// for (var i = 0; i <= antwoord.length-1; i++) {
-	// 	//antwoord[i]
-	// 	//alert(antwoord[i]);
-	// 	for (var x = 0 ; x <= subjects[i].parties.length-1; x++) {
-	// 		alert("antwoord op vraag:" + i + " is:" + antwoord[i] + ". standpunt partij:" + subjects[i].parties[x].name + " is:" + subjects[i].parties[x].position);
-
-	// 	};
-	// };
 
 };
 function vergelijkantwoord(gegevenantwoord,vraagnummer){
@@ -155,7 +196,7 @@ function vergelijkantwoord(gegevenantwoord,vraagnummer){
 			//alert(gegevenantwoord + " " + subjects[vraagnummer].parties[partijteller].name + " " + subjects[vraagnummer].parties[partijteller].position);
 			for(pointsteller = 0; pointsteller < points.length; pointsteller++){
 				if(points[pointsteller].name == subjects[vraagnummer].parties[partijteller].name){
-					points[pointsteller].points++;
+					points[pointsteller].points = points[pointsteller].points + 1 *gewicht[vraagnummer];
 				}
 			}
 		}
@@ -170,7 +211,6 @@ function groterdan(){
 	points.forEach(item =>{
 		var tekstresultaat = document.createElement("p")
 		var innertekst = document.createTextNode(item.name)
-		debugger
 		for( partijindex = 0; (parties[partijindex].name != item.name) && (partijindex < parties.length - 1); partijindex++){
 		}
 		tekstresultaat.appendChild(innertekst)
@@ -188,7 +228,6 @@ function seculier(){
 	points.forEach(item =>{
 		var tekstresultaat = document.createElement("p")
 		var innertekst = document.createTextNode(item.name)
-		debugger
 		for( partijindex = 0; (parties[partijindex].name != item.name) && (partijindex < parties.length - 1); partijindex++){
 		}
 		tekstresultaat.appendChild(innertekst)
