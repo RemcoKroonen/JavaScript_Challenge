@@ -37,6 +37,9 @@ function paginawissel() {
 		document.getElementById('geenvanbeide').style.visibility = 'hidden';
 		document.getElementById('oneens').style.visibility = 'hidden';
 		document.getElementById('tekststellingen').style.visibility = 'visible';
+		document.getElementById('main').style.visibility = 'hidden';
+		document.getElementById('groter').style.visibility = 'hidden';
+		document.getElementById('seculier').style.visibility = 'hidden';
 
 	};
 	if( (nr>0) && (nr<= subjects.length)) {
@@ -48,7 +51,11 @@ function paginawissel() {
 		document.getElementById('eens').style.visibility = 'visible';
 		document.getElementById('geenvanbeide').style.visibility = 'visible';
 		document.getElementById('oneens').style.visibility = 'visible';
+		document.getElementById('main').style.visibility = 'hidden';
 		document.getElementById('tekststellingen').style.visibility = 'hidden';
+		document.getElementById('groter').style.visibility = 'hidden';
+		document.getElementById('seculier').style.visibility = 'hidden';
+		document.getElementById('main').innerHTML = '';
 		
 	};
 	if (nr>subjects.length) {
@@ -61,6 +68,9 @@ function paginawissel() {
 		document.getElementById('geenvanbeide').style.visibility = 'hidden';
 		document.getElementById('oneens').style.visibility = 'hidden';
 		document.getElementById('tekststellingen').style.visibility = 'hidden';
+		document.getElementById('main').style.visibility = 'visible';
+		document.getElementById('groter').style.visibility = 'visible';
+		document.getElementById('seculier').style.visibility = 'visible';
 
 		score();
 		points.forEach(item =>{
@@ -114,17 +124,18 @@ function geenvanbeide(){
 };
 
 function score(){
+	points = [];
 	subjects[0].parties.forEach(partie => {
 		points.push({name: partie.name, points: 0});
 	});
 
 	antwoord.forEach(vergelijkantwoord);
-	debugger;
+	//debugger;
 	points.sort(function(a,b){
 		return b.points - a.points;
-		});
+	});
 
-	debugger;
+	//debugger;
 
 	//alert("ik zit nu in score")
 	// for (var i = 0; i <= antwoord.length-1; i++) {
@@ -150,28 +161,43 @@ function vergelijkantwoord(gegevenantwoord,vraagnummer){
 		}
 		
 	};
-
-	
-//	alert(gegevenantwoord + " " + vraagnummer);
-//	debugger;
-//	subjects[vraagnummer].parties.forEach((partie, gegevenantwo) => {alert(partie.name + " " + partie.position + " " + gegevenantwoord + " " + vraagnummer)});
-//	subjects[vraagnummer].parties.forEach((gegevenantwoord,parties.name)=>{ alert(parties.name)});
-//		if( ((gegevenantwoord == 1) and (party.position == "pro")) || ((gegevenantwoord == 2) and (party.position == "ambivalent")) || ((gegevenantwoord == 3) and (party.position == "contra")) ) {
-//			s
-//		}
-//		});
-
 };
 
+function groterdan(){
+	document.getElementById('main').innerHTML = '';
+	
+	
+	points.forEach(item =>{
+		var tekstresultaat = document.createElement("p")
+		var innertekst = document.createTextNode(item.name)
+		debugger
+		for( partijindex = 0; (parties[partijindex].name != item.name) && (partijindex < parties.length - 1); partijindex++){
+		}
+		tekstresultaat.appendChild(innertekst)
+		if (partijindex < parties.length){
+			if (parties[partijindex].size > 10) {
+				document.getElementById("main").appendChild(tekstresultaat)
+			}
+		}
+	})
+};
+function seculier(){
+	document.getElementById('main').innerHTML = '';
+	
+	
+	points.forEach(item =>{
+		var tekstresultaat = document.createElement("p")
+		var innertekst = document.createTextNode(item.name)
+		debugger
+		for( partijindex = 0; (parties[partijindex].name != item.name) && (partijindex < parties.length - 1); partijindex++){
+		}
+		tekstresultaat.appendChild(innertekst)
+		if (partijindex < parties.length){
+			if (parties[partijindex].secular) {
+				document.getElementById("main").appendChild(tekstresultaat)
+			}
+		}
+	})
 
-//function paginanummer(title) {
-    //return title;
-
-//}
-
-// 
-// var text = document.getElementById("title")
-// var text = document.getElementById("subjects")
-// var text = document.getElementById("subjects")
-// var text = document.getElementById("subjects")
+};
 
