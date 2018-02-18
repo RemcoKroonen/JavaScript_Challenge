@@ -77,6 +77,7 @@ function paginawissel() {
 
 
 		score();
+		document.getElementById('main').innerHTML = '';
 		//alert(gewicht.reduce(getSum));
 		points.forEach(item =>{
 			var tekstresultaat = document.createElement("p")
@@ -210,7 +211,7 @@ function groterdan(){
 	
 	points.forEach(item =>{
 		var tekstresultaat = document.createElement("p")
-		var innertekst = document.createTextNode(item.name)
+		var innertekst = document.createTextNode(item.name + " " + Math.floor(( item.points  /  (gewicht.reduce(getSum))* 100)) + "%")
 		for( partijindex = 0; (parties[partijindex].name != item.name) && (partijindex < parties.length - 1); partijindex++){
 		}
 		tekstresultaat.appendChild(innertekst)
@@ -227,7 +228,7 @@ function seculier(){
 	
 	points.forEach(item =>{
 		var tekstresultaat = document.createElement("p")
-		var innertekst = document.createTextNode(item.name)
+		var innertekst = document.createTextNode(item.name + " " + Math.floor(( item.points  /  (gewicht.reduce(getSum))* 100)) + "%")
 		for( partijindex = 0; (parties[partijindex].name != item.name) && (partijindex < parties.length - 1); partijindex++){
 		}
 		tekstresultaat.appendChild(innertekst)
@@ -237,6 +238,7 @@ function seculier(){
 			}
 		}
 	})
+
 
 };
 
